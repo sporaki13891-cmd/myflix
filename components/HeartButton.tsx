@@ -10,7 +10,7 @@ interface HeartButtonProps {
 }
 
 export default function HeartButton({ movie, profileId, size = 22 }: HeartButtonProps) {
-  const { isInList, toggleMyList } = useMyList(profileId);
+  const { isInList, toggleMyList } = useMyList();
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {

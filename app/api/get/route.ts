@@ -30,12 +30,8 @@ export async function GET(req: Request) {
     });
 
     // ✅ Flatten movie structure
-    type MovieItem = {
-      movie: any;
-    };
-
     const movies = items
-      .map((x: any) => x.movie)
+      .map((x: { movie: any }) => x.movie)
       .filter(Boolean);
 
     return NextResponse.json(movies, { status: 200 });

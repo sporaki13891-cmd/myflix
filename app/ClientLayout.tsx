@@ -27,7 +27,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   if (!profileId) return null;
 
   return (
-    <MyListProvider profileId={userId || profileId}>
+    <MyListProvider>
       {children}
     </MyListProvider>
   );

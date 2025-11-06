@@ -29,7 +29,7 @@ export async function GET(req: Request) {
       },
     });
 
-    // ✅ Flatten movie structure
+    // ✅ Force type safety
     const movies = items
       .map((x: { movie: any }) => x.movie)
       .filter(Boolean);

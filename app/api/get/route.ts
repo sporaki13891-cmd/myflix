@@ -35,8 +35,9 @@ export async function GET(req: Request) {
     };
 
     const movies = items
-      .map((x: MovieItem) => x.movie)
-      .filter(Boolean);
+    .map((x: any) => x.movie)
+    .filter(Boolean);
+
 
 
     return NextResponse.json(movies, { status: 200 });

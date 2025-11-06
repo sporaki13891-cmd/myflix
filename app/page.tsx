@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";   // ✅ ΝΕΟ
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import FinalHeroFade from "../components/Hero";
@@ -39,7 +40,17 @@ const newReleases = [
 ];
 
 export default function Home() {
+  const router = useRouter();
   const [fadeIn, setFadeIn] = useState(false);
+
+  // ✅ NEW — Protect home: redirect if no active profile
+  useEffect(() => {
+    const profile = localStorage.getItem("activeProfile");
+    if (!profile) {
+      router.push("/profiles");   // redirect to select profile
+      return;
+    }
+  }, []);
 
   // 🌅 Fade-in effect when the page loads (after intro)
   useEffect(() => {

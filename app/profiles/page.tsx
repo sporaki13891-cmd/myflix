@@ -13,13 +13,26 @@ export default function ProfilesPage() {
 
   useEffect(() => {
     const stored = localStorage.getItem("profiles");
+
     if (stored) {
       try {
         setProfiles(JSON.parse(stored));
       } catch (e) {
         console.error("Error loading profiles", e);
       }
+    } else {
+      // ✅ Create default profile if none exist
+      const defaultProfile = [
+        {
+          name: "User",
+          avatar: "/images/avatars/default.png", // <-- άλλαξέ το αν θες
+        },
+      ];
+
+      localStorage.setItem("profiles", JSON.stringify(defaultProfile));
+      setProfiles(defaultProfile);
     }
+
     setTimeout(() => setIsLoaded(true), 150);
   }, []);
 

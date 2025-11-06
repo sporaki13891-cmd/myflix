@@ -1,0 +1,191 @@
+/* --- Tailwind Directives --- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --- Root variables --- */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --font-roboto: 'Roboto', Arial, Helvetica, sans-serif;
+  --radius-card: 0.5rem; /* rounded-md */
+  --shadow-card: 0 10px 20px rgba(0, 0, 0, 0.4);
+  --transition-smooth: all 0.3s ease-in-out;
+}
+
+/* --- Dark mode --- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* --- Body styling --- */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-roboto);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Scrollbar hide --- */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scaleUp {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmerLight {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateY(8px);
+  }
+}
+
+.animate-fadeIn { animation: fadeIn 0.5s ease-out forwards; }
+.animate-scaleUp { animation: scaleUp 0.3s ease-out forwards; }
+.animate-fadeUp { animation: fadeUp 0.8s ease-out forwards; }
+.animate-shimmerLight { animation: shimmerLight 6s ease-in-out infinite; }
+
+/* --- Hero Section --- */
+.bg-gradient-hero {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 60%);
+}
+.text-shadow {
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* --- Buttons --- */
+.button-hero {
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-card);
+  font-weight: 600;
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-card);
+}
+.button-hero:hover {
+  transform: translateY(-2px) scale(1.05);
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* --- Movie Cards --- */
+.movie-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-smooth);
+}
+.movie-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
+}
+
+/* --- Modal --- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+.modal-content {
+  background-color: #000;
+  color: #fff;
+  border-radius: var(--radius-card);
+  width: 91.6667%;
+  max-width: 48rem;
+  padding: 1rem;
+  position: relative;
+  transform: scale(0.95);
+  animation: scaleUp 0.3s ease-out forwards;
+}
+.modal-close:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+
+/* --- Navbar --- */
+.nav-item {
+  position: relative;
+  cursor: pointer;
+}
+.nav-item span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  transition: width 0.3s;
+}
+.nav-item:hover span {
+  width: 100%;
+}
+
+/* --- Optional global utilities --- */
+.transition-smooth {
+  transition: var(--transition-smooth);
+}
+
+/* --- Drag & Swipe --- */
+.desktop-drag {
+  overflow: hidden;
+  cursor: grab;
+}
+.mobile-swipe {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+/* --- Scroll snap --- */
+.snap-x {
+  scroll-snap-type: x mandatory;
+}
+.snap-start {
+  scroll-snap-align: start;
+}
+
+/* --- Focus visible (for accessibility) --- */
+:focus-visible {
+  outline: 2px solid #ef4444; /* red-500 */
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* --- Prevent layout shift when scrollbar hides --- */
+html {
+  overflow-y: scroll; /* always reserve scrollbar space */
+}

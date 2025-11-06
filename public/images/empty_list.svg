@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" fill="black"/>
+  <g fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="24" y="28" width="80" height="72" rx="6" stroke="#ffffff33"/>
+    <line x1="36" y1="44" x2="92" y2="44" stroke="#ffffff33"/>
+    <line x1="36" y1="64" x2="92" y2="64" stroke="#ffffff33"/>
+    <line x1="36" y1="84" x2="68" y2="84" stroke="#ffffff33"/>
+  </g>
+  <path d="M90 90 L104 104 M104 90 L90 104" stroke="#e50914" stroke-width="5" stroke-linecap="round"/>
+  <text x="64" y="118" text-anchor="middle" font-size="10" fill="#ffffff55" font-family="Arial, sans-serif">
+    Your list is empty
+  </text>
+</svg>

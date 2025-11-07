@@ -3,7 +3,7 @@ import { NextResponse, NextRequest } from "next/server";
 
 export async function GET(
   req: NextRequest,
-  context: { params: { profileId: string } }
+  context: { params: Promise<{ profileId: string }> }
 ) {
   try {
     const { profileId } = await context.params;
@@ -15,16 +15,33 @@ export async function GET(
       );
     }
 
-    const userWatchlist = await prisma.watchlist.findMany({
+    const entries = await prisma.watchlist.findMany({
       where: { userId: profileId },
-      include: { movie: true },
+      select: {
+        movie: {
+          select: {
+            id: true,
+            title: true,
+            description: true,
+            image: true,
+            videoUrl: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+      },
     });
 
-    const formatted = userWatchlist.map((entry) => entry.movie);
+    const movies = entries
+      .map((x) => x.movie)
+      .filter(Boolean);
 
-    return NextResponse.json(formatted, { status: 200 });
+    return NextResponse.json(movies, { status: 200 });
   } catch (error) {
     console.error("Error fetching watchlist:", error);
-    return NextResponse.json({ error: "Server error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Server error" },
+      { status: 500 }
+    );
   }
 }

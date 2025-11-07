@@ -9,6 +9,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   const userId = session?.user?.id ?? null;
 
   const [profileId, setProfileId] = useState<string | null>(null);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     try {
@@ -22,9 +23,11 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     } catch {
       setProfileId("guest");
     }
+
+    setReady(true);
   }, []);
 
-  if (!profileId) return null;
+  if (!ready) return null;
 
   return (
     <MyListProvider>

@@ -124,7 +124,7 @@ export const MyListProvider = ({ children }: { children: ReactNode }) => {
   };
 
   // ----------------------------
-  // toggleMyList
+  // ✅ toggleMyList (FULL FIX)
   // ----------------------------
   const toggleMyList = async (movie: MovieItem) => {
     if (!movie || !profileId) return;
@@ -146,7 +146,14 @@ export const MyListProvider = ({ children }: { children: ReactNode }) => {
 
         const res = await fetch(endpoint, {
           method: "POST",
-          body: JSON.stringify({ userId, movieId: id }),
+          body: JSON.stringify({
+            userId,
+            movieId: id,
+            title: movie.title,
+            description: movie.description ?? "",
+            image: movie.image ?? "",
+            videoUrl: movie.videoUrl ?? "",
+          }),
           headers: { "Content-Type": "application/json" },
         });
 

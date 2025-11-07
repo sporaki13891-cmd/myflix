@@ -93,9 +93,15 @@ const Navbar = () => {
           <li key={item} role="none" className="relative group cursor-pointer">
             <button
               role="menuitem"
-              onClick={() =>
-                router.push(item === "Home" ? "/" : `/${item.toLowerCase()}`)
-              }
+              onClick={() => {
+                if (item === "Home") {
+                  router.push("/");
+                } else if (item === "My List") {
+                  router.push("/my-list");
+                } else {
+                  router.push(`/${item.toLowerCase()}`);
+                }
+              }}
               className="transition-colors duration-300 group-hover:text-red-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 rounded-sm"
             >
               {item}
@@ -220,6 +226,7 @@ const Navbar = () => {
                 </p>
               )}
               <hr className="border-gray-700 my-1" />
+
               <button
                 onClick={() => {
                   localStorage.removeItem("activeProfile");
@@ -229,13 +236,16 @@ const Navbar = () => {
               >
                 Αλλαγή Προφίλ
               </button>
+
               <button
                 onClick={() => router.push("/manage-profiles")}
                 className="block w-full text-left px-4 py-2 hover:bg-red-600/20 hover:text-white transition"
               >
                 Διαχείριση Προφίλ
               </button>
+
               <hr className="border-gray-700 my-1" />
+
               <button
                 onClick={() => router.push("/login")}
                 className="block w-full text-left px-4 py-2 text-red-500 hover:text-red-400 transition"

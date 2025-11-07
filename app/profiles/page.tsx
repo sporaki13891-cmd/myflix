@@ -25,7 +25,7 @@ export default function ProfilesPage() {
       const defaultProfile = [
         {
           name: "User",
-          avatar: "/images/avatars/default.png", // <-- άλλαξέ το αν θες
+          avatar: "/images/avatar3.png", // <-- άλλαξέ το αν θες
         },
       ];
 
